@@ -63,7 +63,7 @@ function App() {
   me.thisInArrow();
   me.thisInRegular();
   //4. Using new keyword
-  let add = (x, y) => console.log(x + y); //error
+  let add = (x, y) => console.log(x + y); //error because the arrow functions are only callable and not constructible
 
   new add(2, 3);
   //5. No duplicate named parameters
