@@ -120,3 +120,49 @@ console.log(array1.fill(6));
 // Expected output: Array [6, 6, 6, 6]
 
 
+// Array.prototype.reduce(): The reduce() method executes a user-supplied "reducer" callback function on each element of the array, in order, passing in the return value from the calculation on the preceding element. The final result of running the reducer across all elements of the array is a single value.
+
+const array1 = [1, 2, 3, 4];
+
+// 0 + 1 + 2 + 3 + 4
+const initialValue = 0;
+const sumWithInitial = array1.reduce(
+  (accumulator, currentValue) => accumulator + currentValue,
+  initialValue
+);
+
+console.log(sumWithInitial);
+// Expected output: 10
+
+const numbers = [56, 1, 2, 3];
+
+numbers.reduce(function (accumulator, currentItem) {
+  return accumulator - currentItem;
+});
+
+// The invocation above will return: 50
+const numbers = [10, 20, 30, 40];
+
+numbers.reduce(function (accumulator, currentItem, index) {
+  console.log(`The current item (${currentItem}) is on index ${index}`);
+  return accumulator + currentItem;
+}, 500);
+
+// The invocation above will return:
+// "The current item (10) is on index 0"
+// "The current item (20) is on index 1"
+// "The current item (30) is on index 2"
+// "The current item (40) is on index 3"
+// 600
+const nestedArrays = [
+    [20, 30],
+    ["Code", "Sweetly"],
+    [true, "Grace"],
+  ];
+  
+  nestedArrays.reduce(function (accumulator, currentItem) {
+    return [...accumulator, ...currentItem];
+  }, []);
+  
+  // The invocation above will return:
+  [20, 30, "Code", "Sweetly", true, "Grace"];
