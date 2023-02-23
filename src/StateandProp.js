@@ -47,3 +47,52 @@ this.state = { name : 'Duc Hien' }
 console.log(this.state.name) //Duc Hien
 // initializing a state : ( in function component with useState)
 const [count, setCount] = useState(0)
+
+// Update state in function component
+this.setState({
+    name : 'Hien Duc'
+})
+
+// Update state in function component with useState
+setCount(1); // count = 1
+
+/*Lifecycle of Components
+A React component undergoes three phases in its lifecycle: mounting, updating, and unmounting. */
+// In class component ( stateful component ) we can declare and use state
+class Counter extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			count: 0
+		};
+
+		this.setCount = this.setCount.bind(this);
+	}
+
+	setCount() {
+        this.setState({count: 1}); // update state 
+		this.setState({count: this.state.count + 1}); 
+	}
+
+	render() {
+		return (
+			<div>
+				<h1>Counter</h1>
+				<button onClick={this.setCount}>Click to add</button> 
+				<p>Count: {this.state.count}</p>
+			</div>
+		)
+	}
+}
+
+// In function component (stateless component) React hooks empowered developer to access state from functional component.
+function MyInput(props) {
+	const [input, setInput] = useState('');
+
+	return (
+		<input
+			value={input}
+			onChange={e => setInput(e.target.value)} // update state in function you use setInput ...
+		/>
+	)
+}
