@@ -86,6 +86,7 @@ class Counter extends React.Component {
 }
 
 // In function component (stateless component) React hooks empowered developer to access state from functional component.
+// UseState is a Hook that lets you add React state to function components
 function MyInput(props) {
 	const [input, setInput] = useState('');
 
