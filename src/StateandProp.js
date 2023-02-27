@@ -97,3 +97,23 @@ function MyInput(props) {
 		/>
 	)
 }
+// What will component look like when state change? ==> the component will re-render to reflect the updated state...
+//Exp:
+import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0); // the state is "count" which inittially set to 0 using useState hook
+
+  const handleIncrement = () => {
+    setCount(count + 1);
+  };
+
+  return (
+    <div>
+      <p>Count: {count}</p> 
+      <button onClick={handleIncrement}>Increment</button>  
+    </div>
+  );
+}
+// when user click the button ---> function handleIncrement called ---> update the state by "setCount"
+// when state change React will change to reflect the new state ("count")
