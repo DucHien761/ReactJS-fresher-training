@@ -142,3 +142,89 @@ function MyComponent() {
     );
   }
 
+//3. useContext: is a hook that allows components to consume data from a context .
+// Exp:
+import React, { useState } from 'react';
+import { ThemeProvider } from './themeContext';
+import Header from './Header';
+
+function App() {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  }
+
+  return (
+    <ThemeProvider value={{ theme, toggleTheme }}>
+      <div className={theme}>
+        <Header />
+        // other components
+      </div>
+    </ThemeProvider>
+  );
+}
+
+// Header.js
+
+import React, { useContext } from 'react';
+import { ThemeContext } from './themeContext';
+
+function Header() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  return (
+    <header>
+      <h1>My App</h1>
+      <button onClick={toggleTheme}>
+        {theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+      </button>
+    </header>
+  );
+}
+
+// themeContext.js
+
+import React from 'react';
+
+export const ThemeContext = React.createContext({
+  theme: 'light',
+  toggleTheme: () => {}
+});
+
+export const ThemeProvider = ThemeContext.Provider;
+
+// Exp: 
+import React, { useContext } from 'react';
+
+// Create a new context
+const MyContext = React.createContext();
+
+// Create a component that uses the context
+function MyComponent() {
+  // Use the useContext hook to access the context
+  const contextData = useContext(MyContext);
+
+  return (
+    <div>
+      <h1>{contextData.title}</h1>
+      <p>{contextData.description}</p>
+    </div>
+  );
+}
+
+// Use the context provider to wrap the component tree
+function App() {
+  const contextValue = {
+    title: 'My App',
+    description: 'This is an example of how to use the useContext hook.'
+  };
+
+  return (
+    <MyContext.Provider value={contextValue}>
+      <MyComponent />
+    </MyContext.Provider>
+  );
+}
+
+export default App;
